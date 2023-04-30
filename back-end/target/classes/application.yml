@@ -1,0 +1,32 @@
+spring:
+   
+   jpa:
+      hibernate:
+         ddl-auto: update
+      show-sql: true
+      properties:
+         hibernate:
+            format-sql: true
+            dialect: org.hibernate.dialect.PostgreSQLDialect            
+   datasource:
+      url: jdbc:postgresql://localhost:5432/reddit_clone
+      username: postgres
+      password: vietlinh991      
+   application:
+      name: keycloak-demo
+   security:
+      oauth2:
+         resourceserver:
+           jwt:
+             issuer-uri: http://localhost:8180/realms/keycloak-demo
+             jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+jwt:
+   auth:
+      converter:
+         resource-id: demo-client
+         principal-attribute: preferred_username
+        
+logging:
+  level:
+    org.springframework.security: DEBUG
