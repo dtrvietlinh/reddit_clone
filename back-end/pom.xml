@@ -34,6 +34,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
+		<!-- SPRING OAUTH2 CLIENT -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
 		<!-- SPRING THYMLEAF -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,6 +105,12 @@
 			<groupId>org.ocpsoft.prettytime</groupId>
 			<artifactId>prettytime</artifactId>
 			<version>5.0.3.Final</version>
+		</dependency>
+		<!-- GOOGLE OAUTH API -->
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client</artifactId>
+			<version>1.30.4</version>
 		</dependency>
 	</dependencies>
 	<build>
