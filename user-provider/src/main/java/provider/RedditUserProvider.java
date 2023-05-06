@@ -1,5 +1,6 @@
 package provider;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -141,6 +142,7 @@ public class RedditUserProvider implements UserStorageProvider, UserLookupProvid
 		if (adapter == null) {
 			try {
 				RedditUser user = client.getPeanutById(identifier);
+				if (user==null) return null;
 				adapter = new UserAdapter(session, realm, model, user);
 				loadedUsers.put(identifier, adapter);
 			} catch (WebApplicationException e) {
@@ -186,11 +188,22 @@ public class RedditUserProvider implements UserStorageProvider, UserLookupProvid
 
 	@Override
 	public UserModel addUser(RealmModel realm, String username) {
+		log.debug("Received {} at {}", username, realm);
+		RedditUser user = new RedditUser();
+		user.setUsername(username);
+		user.setEmail(username);
+		user.setCreated(Instant.now().getEpochSecond());
+		user.setEnabled(true);
+		if (client.addUser(user)) {
+			log.debug("Called addUser successfully");
+			return new UserAdapter(session, realm, model, user);
+		}
 		return null;
 	}
 
 	@Override
 	public boolean removeUser(RealmModel realm, UserModel user) {
-		return false;
+		log.debug("Called removeUser successfully");
+		return client.deleteUser(user.getUsername());
 	}
 }

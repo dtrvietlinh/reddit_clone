@@ -8,11 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import api.dto.KeycloakAuthenticationResponse;
 import api.dto.LoginRequest;
 import api.dto.RegisterRequest;
 import api.dto.ResponseObject;
@@ -24,25 +19,23 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AuthService {
 	
-	CustomHttpRequest httpRequest;
-	RedditPasswordEncoder pwdEncoder;
-	UserRepository userRepo;
+	private final static String CLIENT_USER_ID = System.getenv("KEYCLOAK_CLIENT_USER_ID");
 	
-	public KeycloakAuthenticationResponse login(LoginRequest request) {
+	private CustomHttpRequest httpRequest;
+	private RedditPasswordEncoder pwdEncoder;
+	private UserRepository userRepo;
+	
+	public String login(LoginRequest request) {
 		String response = httpRequest.loginRequest(request);
-		ObjectMapper obj = new ObjectMapper();
-		obj.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		try {
-			KeycloakAuthenticationResponse json = obj.readValue(response, KeycloakAuthenticationResponse.class);
-			if (json.getAccess_token() != null) {
-				
-			}
-			return json;
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		if (response.equals("401")) return "Invalid user credentials";
+		if (response.equals("400")) {
+			String id = String.format("%s%s", CLIENT_USER_ID, request.getUsername());
+			verifyEmail(id);
+			return "Account is not fully set up, please verify your email";
 		}
-		return null;
+		
+		return response;
 	}
 
 	public ResponseEntity<ResponseObject> signup(RegisterRequest request) {
@@ -52,7 +45,13 @@ public class AuthService {
 		user.setCreated(Instant.now());
 		user.setEnabled(true);
 		user.setPassword(pwdEncoder.encode(request.getPassword()));
-		return ResponseEntity.ok(new ResponseObject("ok", "User Registration Successfully", userRepo.save(user)));
+		
+		String id = String.format("%s%s", CLIENT_USER_ID, request.getUsername());
+		userRepo.save(user);
+		verifyEmail(id);			
+		return ResponseEntity.ok(new ResponseObject("ok", 
+				"User Registration Successfully. Please verify your email to fully set up your account", 
+				userRepo.save(user)));
 	}
 	
 	public User getCurrentUser() {
@@ -62,4 +61,7 @@ public class AuthService {
         		.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 	}
 
+	private boolean verifyEmail(String id) {
+		return httpRequest.sendVerifyEmail(id);
+	}
 }

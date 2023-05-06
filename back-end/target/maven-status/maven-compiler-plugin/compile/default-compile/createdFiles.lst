@@ -8,6 +8,7 @@ api\dto\RegisterRequest.class
 api\model\Subreddit.class
 api\model\Comment.class
 api\repository\UserRepository.class
+api\service\UserProviderService.class
 api\model\Subreddit$SubredditBuilder.class
 api\dto\KeycloakAuthenticationResponse.class
 api\model\Point.class
@@ -30,7 +31,9 @@ api\service\RedditPasswordEncoder.class
 api\service\PointService.class
 api\controller\UserProviderController.class
 api\model\Point$PointBuilder.class
+api\service\Test.class
 api\dto\KeycloakAuthenticationResponse$KeycloakAuthenticationResponseBuilder.class
+api\repository\RefreshTokenRepository.class
 api\model\Vote$VoteBuilder.class
 api\repository\PostRepository.class
 api\repository\SubredditRepository.class
@@ -57,6 +60,7 @@ api\model\Vote.class
 api\repository\VoteRepository.class
 api\model\Post.class
 api\dto\VoteDto.class
+api\model\RefreshToken.class
 api\controller\PointController.class
 api\controller\VoteController.class
 api\exception\SubredditNotFoundException.class

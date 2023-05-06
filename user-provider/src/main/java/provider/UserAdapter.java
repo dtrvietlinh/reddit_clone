@@ -55,7 +55,9 @@ public class UserAdapter extends AbstractUserAdapterFederatedStorage.Streams {
 	
 	@Override
     public boolean isEmailVerified() {
-        return user.isEnabled();
+		String val = getFirstAttribute(EMAIL_VERIFIED_ATTRIBUTE);       
+        if (val == null) return false;
+        else return Boolean.valueOf(val);
     }
 	
 	@Override

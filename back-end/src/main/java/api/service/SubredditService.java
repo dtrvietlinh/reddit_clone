@@ -13,11 +13,9 @@ import api.mapper.SubredditMapper;
 import api.model.Subreddit;
 import api.repository.SubredditRepository;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class SubredditService {
 	
 	private final SubredditRepository subredditRepository;

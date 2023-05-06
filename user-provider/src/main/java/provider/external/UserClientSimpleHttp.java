@@ -54,6 +54,7 @@ public class UserClientSimpleHttp implements UserClient{
 		if (response.getStatus() == 404) {
 			throw new WebApplicationException(response.getStatus());
 		}
+		if (response.getStatus()==204) return null;
 		return response.asJson(RedditUser.class);
 	}
 	
@@ -74,5 +75,27 @@ public class UserClientSimpleHttp implements UserClient{
 		String url = String.format("%s/credentials/update", baseUrl);
 		int status = SimpleHttp.doPut(url, httpClient).json(credentialData).asStatus();
 		return Response.status(status).build();
+	}
+
+	@Override
+	@SneakyThrows
+	public boolean addUser(RedditUser user) {
+		String url = String.format("%s/add", baseUrl);
+		int status = SimpleHttp.doPost(url, httpClient).json(user).asStatus();
+		if (status!=200) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	@SneakyThrows
+	public boolean deleteUser(String username) {
+		String url = String.format("%s/delete/%s", baseUrl, username);
+		int status = SimpleHttp.doDelete(url, httpClient).asStatus();
+		if (status!=200) {
+			return false;
+		}
+		return true;
 	}
 }

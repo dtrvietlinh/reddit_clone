@@ -1,0 +1,10 @@
+provider\RedditUserProvider.class
+provider\external\RedditUser.class
+provider\RedditUserProviderFactory.class
+provider\external\UpdateCredentialsRequest.class
+provider\external\UserClientSimpleHttp$1.class
+provider\Constants.class
+provider\external\UserClient.class
+provider\UserAdapter.class
+provider\external\RedditPasswordEncoder.class
+provider\external\UserClientSimpleHttp.class

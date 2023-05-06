@@ -3,7 +3,9 @@ package provider.external;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,4 +35,12 @@ public interface UserClient {
 	@PUT
 	@Path("/credentials/update")
 	Response updateCredentialData(UpdateCredentialsRequest credentialData);
+	
+	@POST
+	@Path("/add")
+	boolean addUser(RedditUser user);
+	
+	@DELETE
+	@Path("/delete")
+	boolean deleteUser(String username);
 }
