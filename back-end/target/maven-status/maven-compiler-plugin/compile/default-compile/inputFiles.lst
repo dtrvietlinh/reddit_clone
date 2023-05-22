@@ -23,6 +23,7 @@ C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\ap
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\repository\PostRepository.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\repository\PointRepository.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\service\RedditPasswordEncoder.java
+C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\dto\GoogleAuthenticationResponse.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\RedditApplication.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\service\UserProviderService.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\dto\CommentsDto.java
@@ -33,7 +34,6 @@ C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\ap
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\dto\SubredditDto.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\repository\RefreshTokenRepository.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\service\PostService.java
-C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\service\Test.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\service\CommentService.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\dto\LoginRequest.java
 C:\Users\loujmou\eclipse-workspace\RedditCloneKeycloak\back-end\src\main\java\api\mapper\CommentMapper.java

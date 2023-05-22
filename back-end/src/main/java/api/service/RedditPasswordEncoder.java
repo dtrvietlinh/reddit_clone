@@ -8,9 +8,8 @@ import java.util.Base64;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import static java.lang.System.getenv;
 
 @Service
 public class RedditPasswordEncoder {	
@@ -18,8 +17,10 @@ public class RedditPasswordEncoder {
 	private static final int DEFAULT_ITERATIONS = 51504;
 	private static final int DEFAULT_SALT_LENGTH = 16;
 	private static final int DEFAULT_HASH_WIDTH = 256;
-	private static final String ALGORITHM = getenv("PWD_ALGORITHM");
-	private static final String SECRET = getenv("PWD_SECRET");
+	@Value("${PWD_ALGORITHM}")
+	private String ALGORITHM;
+	@Value("${PWD_SECRET}")
+	private String SECRET;
 	
 	
 	/*

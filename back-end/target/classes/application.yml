@@ -1,4 +1,12 @@
 spring: 
+   profiles:
+      active: prod
+
+---    
+spring:
+   config:
+      active:
+         on-profile: dev
    jpa:
       hibernate:
          ddl-auto: update
@@ -8,7 +16,7 @@ spring:
             format-sql: true
             dialect: org.hibernate.dialect.PostgreSQLDialect            
    datasource:
-      url: ${DATABASE_URL}
+      url: jdbc:postgresql://localhost:5432/test
       username: ${DATABASE_USERNAME}
       password: ${DATABASE_PASSWORD}      
    application:
@@ -17,7 +25,7 @@ spring:
       oauth2:
          resourceserver:
             jwt:
-               issuer-uri: http://localhost:8180/realms/${KEYCLOAK_REALM}
+               issuer-uri: http://localhost:8180/realms/keycloak-demo
                jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
          client:
             registration:

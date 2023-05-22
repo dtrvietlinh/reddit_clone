@@ -31,7 +31,6 @@ api\service\RedditPasswordEncoder.class
 api\service\PointService.class
 api\controller\UserProviderController.class
 api\model\Point$PointBuilder.class
-api\service\Test.class
 api\dto\KeycloakAuthenticationResponse$KeycloakAuthenticationResponseBuilder.class
 api\repository\RefreshTokenRepository.class
 api\model\Vote$VoteBuilder.class
@@ -40,6 +39,7 @@ api\repository\SubredditRepository.class
 api\config\JwtAuthConverter.class
 api\model\VoteType.class
 api\exception\PostNotFoundException.class
+api\dto\GoogleAuthenticationResponse$GoogleAuthenticationResponseBuilder.class
 api\dto\KeycloakUpdateCredentialsRequest.class
 api\mapper\VoteMapper.class
 api\controller\PostController.class
@@ -57,6 +57,7 @@ api\model\User.class
 api\controller\AuthController.class
 api\controller\SubredditController.class
 api\model\Vote.class
+api\dto\GoogleAuthenticationResponse.class
 api\repository\VoteRepository.class
 api\model\Post.class
 api\dto\VoteDto.class

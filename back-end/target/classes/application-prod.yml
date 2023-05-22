@@ -1,0 +1,42 @@
+server:
+   port: 5000
+
+spring:
+   config:
+      active:
+         on-profile: prod
+   jpa:
+      hibernate:
+         ddl-auto: update
+      show-sql: true
+      properties:
+         hibernate:
+            format-sql: true
+            dialect: ${DATABASE_DIALECT}            
+   datasource:
+      url: ${DATABASE_URL}
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}      
+   application:
+      name: keycloak-demo
+   security:
+      oauth2:
+         resourceserver:
+            jwt:
+               issuer-uri: ${JWT_ISSUER_URI}
+               jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+         client:
+            registration:
+               google:
+                  client-id: ${GOOGLE_CLIENT_ID}
+                  client-secret: ${GOOGLE_CLIENT_SECRET}
+                  redirect-uri: ${REDIRECT_URI}
+jwt:
+   auth:
+      converter:
+         resource-id: ${KEYCLOAK_CLIENT_ID}
+         principal-attribute: preferred_username
+        
+logging:
+  level:
+    org.springframework.security: DEBUG

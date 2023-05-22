@@ -1,7 +1,5 @@
 package provider.external;
 
-import static java.lang.System.getenv;
-
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -15,8 +13,8 @@ public class RedditPasswordEncoder {
 	private static final int DEFAULT_ITERATIONS = 51504;
 	private static final int DEFAULT_SALT_LENGTH = 16;
 	private static final int DEFAULT_HASH_WIDTH = 256;
-	private static final String ALGORITHM = getenv("PWD_ALGORITHM");
-	private static final String SECRET = getenv("PWD_SECRET");
+	private static final String ALGORITHM = "PBKDF2WithHmacSHA256";
+	private static final String SECRET = "jashdangd@TRANhcb#CvietCOKS@8LINH$FefKU711051999";
 	
 	
 	/*

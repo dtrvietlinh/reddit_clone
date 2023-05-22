@@ -18,9 +18,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class AuthService {
-	
-	private final static String CLIENT_USER_ID = System.getenv("KEYCLOAK_CLIENT_USER_ID");
-	
+
 	private CustomHttpRequest httpRequest;
 	private RedditPasswordEncoder pwdEncoder;
 	private UserRepository userRepo;
@@ -29,9 +27,8 @@ public class AuthService {
 		String response = httpRequest.loginRequest(request);
 		
 		if (response.equals("401")) return "Invalid user credentials";
-		if (response.equals("400")) {
-			String id = String.format("%s%s", CLIENT_USER_ID, request.getUsername());
-			verifyEmail(id);
+		if (response.equals("400")) {			
+			verifyEmail(request.getUsername());
 			return "Account is not fully set up, please verify your email";
 		}
 		
@@ -45,10 +42,8 @@ public class AuthService {
 		user.setCreated(Instant.now());
 		user.setEnabled(true);
 		user.setPassword(pwdEncoder.encode(request.getPassword()));
-		
-		String id = String.format("%s%s", CLIENT_USER_ID, request.getUsername());
 		userRepo.save(user);
-		verifyEmail(id);			
+		verifyEmail(request.getUsername());			
 		return ResponseEntity.ok(new ResponseObject("ok", 
 				"User Registration Successfully. Please verify your email to fully set up your account", 
 				userRepo.save(user)));

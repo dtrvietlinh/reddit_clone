@@ -47,12 +47,12 @@ public class WebSecurityConfig {
         return http.build();
     }
     
-    @Bean
-    ApplicationListener<AuthenticationSuccessEvent> successLogger() {
-        return event -> {
-        	OAuth2LoginAuthenticationToken source = (OAuth2LoginAuthenticationToken) event.getAuthentication();
-        	String access_token = source.getAccessToken().getTokenValue();
-            log.info("success: {}", access_token);
-        };
-    }
+//    @Bean
+//    ApplicationListener<AuthenticationSuccessEvent> successLogger() {
+//        return event -> {
+//        	OAuth2LoginAuthenticationToken source = (OAuth2LoginAuthenticationToken) event.getAuthentication();
+//        	String access_token = source.getAccessToken().getTokenValue();
+//            log.info("success: {}", access_token);
+//        };
+//    }
 }

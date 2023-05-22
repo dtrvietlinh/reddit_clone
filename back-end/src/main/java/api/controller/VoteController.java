@@ -16,10 +16,13 @@ import api.dto.VoteDto;
 import api.service.VoteService;
 import lombok.AllArgsConstructor;
 
+
 @RestController
 @RequestMapping("api/votes")
 @AllArgsConstructor
 public class VoteController {
+	
+	
 	private final VoteService voteService;
 	
 	@PostMapping

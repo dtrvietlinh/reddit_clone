@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("api/comments")
 @AllArgsConstructor
 public class CommentController {
-	
+
 	private final CommentService commentService;
 	
 	@PostMapping

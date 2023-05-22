@@ -1,2 +1,6 @@
 .env
 *.jar
+.project
+.classpath
+.settings
+
